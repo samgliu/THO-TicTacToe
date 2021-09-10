@@ -44,10 +44,10 @@ button:hover{
   .formPopup {
     display: none;
     position: fixed;
-    left: 40%;
+    left: 37%;
     top: 10%;
-    width: 40%;
-    min-width: 150px;
+    width: 26%;
+    min-width: 100px;
     background-color: #1c87c9;
     border: 1px solid #999999;
 }
