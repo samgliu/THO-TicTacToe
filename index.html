@@ -14,9 +14,22 @@
     <div id="controls">
         <button onclick="start()"><strong>Start</strong></button>
         <button onclick="reGame()"><strong>Restart</strong></button>
+        <button id="name" onclick="openForm()"><strong>Input Name</strong></button>
+        <div class=" Popup ">
+            <div class="formPopup" id="popupForm">
+                <form action="#" class="formContainer" onsubmit="inputName();return false">
+                    <h2>Enter two names</h2>
+                    <input type="text" id="p1" placeholder="X" name="p1" required>
+                    <input type="text" id="p2" placeholder="O" name="p2" required>
+
+                    <button type="submit" class="button">Submit</button>
+                    <button type="button" class="button cancel" onclick="closeForm()">Close</button>
+                </form>
+            </div>
     </div>
-    <div id = "result">
         
+    <div id = "result">
+
     </div>
     <div class="grid-container">
         <div class="grid-item" id="0" value=0></div>

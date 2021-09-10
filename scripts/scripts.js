@@ -1,32 +1,38 @@
 const gameBoard = (() => {
     let arr = ["", "", "", "", "", "", "", "", ""];
-    let scoreArr = [0,0,0,0,0,0,0,0,0];
+    let scoreArr = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     let counter = 0;
     let isOver = false;
-    let cuSymbol = "X";
+    let player1 = "X";
+    let player2 = "O"
+    let cuSymbol = player1;
     let winStates = "";
-    /*arr = ["X", "O", "O", "O", "O", "O", "O", "O", "O"];*/
     const getArr = () => arr;
     const getCounter = () => counter;
     const getscoreArr = () => scoreArr;
     const getIsOver = () => isOver;
     const getCuSymbol = () => cuSymbol;
     const getWinStates = () => winStates;
+    const setP1Name = (p1) => {
+        player1 = p1;
+    };
+    const setP2Name = (p2) => {
+        player2 = p2;
+    };
     const mark = (index) => {
         arr[index] = cuSymbol;
-        //console.log(arr[index]);
         counter++;
-        if (cuSymbol == "X"){
+        if (cuSymbol == "X") {
             scoreArr[index] = 1;
             cuSymbol = "O";
         } else {
             scoreArr[index] = -1;
             cuSymbol = "X";
         }
-        if (counter >= 5){
+        if (counter >= 5) {
             verify();
         }
-        if (counter == 9){
+        if (counter == 9) {
             isOver = true;
             cuSymbol = "X"
         }
@@ -44,17 +50,17 @@ const gameBoard = (() => {
         let sum7 = scoreArr[0] + scoreArr[4] + scoreArr[8];
         let sum8 = scoreArr[6] + scoreArr[4] + scoreArr[2];
 
-        if (sum1 == 3 || sum2 == 3 || sum3 == 3 ||sum4 == 3 ||sum5 == 3 ||sum6 == 3 ||sum7 == 3 ||sum8 == 3){
-            winStates = "X Won!";
+        if (sum1 == 3 || sum2 == 3 || sum3 == 3 || sum4 == 3 || sum5 == 3 || sum6 == 3 || sum7 == 3 || sum8 == 3) {
+            winStates = player1 + " Won!";
             isOver = true;
-        } else if (sum1 == -3 || sum2 == -3 || sum3 == -3 ||sum4 == -3 ||sum5 == -3 ||sum6 == -3 ||sum7 == -3 ||sum8 == -3){
-            winStates = "O Won!";
+        } else if (sum1 == -3 || sum2 == -3 || sum3 == -3 || sum4 == -3 || sum5 == -3 || sum6 == -3 || sum7 == -3 || sum8 == -3) {
+            winStates = player2 + " Won!";
             isOver = true;
-        } else if (counter == 9){
+        } else if (counter == 9) {
             winStates = "It's Tie";
             isOver = true;
         }
-        if (isOver){
+        if (isOver) {
             displayController.displayResult();
         }
 
@@ -78,6 +84,8 @@ const gameBoard = (() => {
         getCuSymbol,
         getscoreArr,
         getWinStates,
+        setP1Name,
+        setP2Name,
         mark,
         restart
     };
@@ -88,8 +96,6 @@ const displayController = (() => {
     const refresh = () => {
         for (let i = 0; i < arr.length; i++) {
             let conDiv = document.getElementById(i);
-            /*console.log(conDiv.getAttribute('value'));*/
-            //console.log(arr[i]);
             conDiv.innerHTML = arr[i];
         }
     }
@@ -116,7 +122,6 @@ const Player = (name, symbol) => {
 
 function registerListener() {
     document.querySelectorAll('.grid-item').forEach(function (e) {
-        //console.log(e);
         e.addEventListener('click', clickEvt, false);
     });
 }
@@ -124,13 +129,10 @@ function registerListener() {
 function clickEvt() {
     let idx = this.id;
     let localArr = gameBoard.getArr();
-    console.log(gameBoard.getCounter());
     if (localArr[idx] == "" && !gameBoard.getIsOver()) {
-        console.log(localArr[idx]);
         gameBoard.mark(idx);
-    } else if (gameBoard.getIsOver()){
-        let stat =  gameBoard.getWinStates();
-        console.log(stat);
+    } else if (gameBoard.getIsOver()) {
+        let stat = gameBoard.getWinStates();
     }
     displayController.refresh();
 }
@@ -143,4 +145,20 @@ function start() {
 function reGame() {
     gameBoard.restart();
     displayController.refresh();
+}
+
+function openForm() {
+    document.getElementById("popupForm").style.display = "block";
+}
+
+function closeForm() {
+    document.getElementById("popupForm").style.display = "none";
+}
+
+function inputName() {
+    let n1 = document.getElementById("p1").value;
+    let n2 = document.getElementById("p2").value;
+    gameBoard.setP1Name(n1);
+    gameBoard.setP2Name(n2);
+    closeForm();
 }
