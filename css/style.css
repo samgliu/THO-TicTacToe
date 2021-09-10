@@ -2,6 +2,26 @@ body {
     background-color: whitergb(196, 196, 196);
     text-align: center;
 }
+#result {
+  height: 5rem;
+  font-size: 3rem;
+  font-family: sans-serif;
+}
+button {
+   width: 20%;
+    border: none;
+    border-radius: 5px;
+    background-color: #9eceec;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+button:hover{
+  box-shadow: 0 0 12px rgba(241, 250, 204, 0.8); 
+  background-color: rgb(133, 240, 231);
+}
 
 .grid-container{
     display: grid;
@@ -12,9 +32,10 @@ body {
   }
 .grid-item{
     border: 1px solid;
-    color: rgb(255, 255, 255);
-    font-size: 4rem;
-    line-height: 2;
+    color: rgb(231, 231, 231);
+    font-size: 5rem;
+    font-family: sans-serif;
+    line-height: 1.5;
     text-align: center;
     padding: 1px;
     background-color: rgb(57, 168, 241);
