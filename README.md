@@ -2,7 +2,7 @@
 
 # Description
 
-[<img alt="" width="400px" src="images/expample.png" />](https://samgliu.github.io/THO-TicTacToe/)
+[<img alt="" width="400px" src="images/example.png" />](https://samgliu.github.io/THO-TicTacToe/)
 
         TicTacToe game
 
